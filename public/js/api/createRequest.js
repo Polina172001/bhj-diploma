@@ -4,8 +4,7 @@
  * */
 const createRequest = (options = {}) => {
 
-  const f = function() {}, 
-    {
+  const f = function() {}, {
       method = 'GET',
       callback = f,
       responseType,

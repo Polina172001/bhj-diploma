@@ -3,6 +3,7 @@
  * Имеет свойство URL, равно пустой строке.
  * */
 class Entity {
+  static URL = "";
   /**
    * Запрашивает с сервера список данных.
    * Это могут быть счета или доходы/расходы
@@ -14,7 +15,7 @@ class Entity {
       url: this.URL,
       method: 'GET',
       responseType: 'json',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.account) {
           this.setCurrent(response.account);
@@ -36,7 +37,7 @@ class Entity {
       url: this.URL,
       method: 'PUT',
       responseType: 'json',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.account) {
           this.setCurrent(response.account);
@@ -57,7 +58,7 @@ class Entity {
       url: this.URL,
       method: 'DELETE',
       responseType: 'json',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.account) {
           this.setCurrent(response.account);
