@@ -16,7 +16,7 @@ const createRequest = (options = {}) => {
 
   if(method != 'GET') {
     argument = url;
-    formData = new formData();
+    formData = new FormData();
     for (let key in options.data) {
       formData.append(key, options.data[key]);
     }
