@@ -1,4 +1,3 @@
-
 /**
  * Класс AsyncForm управляет всеми формами
  * приложения, которые не должны быть отправлены с
@@ -14,7 +13,7 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    if (!element) throw ('Error');
+    if (!element) throw ('Error')
     else {
       this.element = element;
       this.registerEvents();
@@ -50,7 +49,7 @@ class AsyncForm {
     return object
   }
 
-  onSubmit(options){
+  onSubmit(options) {
 
   }
 

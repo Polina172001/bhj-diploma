@@ -1,5 +1,3 @@
-
-
 /**
  * Основная функция для совершения запросов
  * на сервер.
@@ -14,7 +12,7 @@ const createRequest = (options = {}) => {
   let formData;
   let methodGet = false;
 
-  if(method != 'GET') {
+  if (method != 'GET') {
     argument = url;
     formData = new FormData();
     for (let key in options.data) {
@@ -42,9 +40,9 @@ const createRequest = (options = {}) => {
   }
 
   xhr.addEventListener('load', (response, err) => {
-    options.callback( response.currentTarget.response,
+    options.callback(response.currentTarget.response,
       new Error(response.currentTarget.response.error)
     );
-  }); 
+  });
 
 };

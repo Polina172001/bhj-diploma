@@ -81,7 +81,7 @@ class User {
    * User.setCurrent.
    * */
   static register(data, callback = (f) => f) {
-    const options = { 
+    const options = {
       method: 'POST',
       url: this.URL + '/register',
       responseType: 'json',
@@ -101,12 +101,12 @@ class User {
    * Производит выход из приложения. После успешного
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
-  static logout( data, callback = (f) => f) {
-    return createRequest({      
+  static logout(data, callback = (f) => f) {
+    return createRequest({
       method: 'POST',
+      data: data,
       url: this.URL + '/logout',
       responseType: 'json',
-      data: data,
       callback: (response, err) => {
         if (response && response.user) {
           this.unsetCurrent(response.user);

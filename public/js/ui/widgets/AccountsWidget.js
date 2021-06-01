@@ -14,13 +14,13 @@ class AccountsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
+  constructor(element) {
     if (!element) throw ('Error');
-    else {
-      this.element = element;
-      this.registerEvents();
-      this.update();
-    }
+
+    this.element = element;
+    this.registerEvents();
+    this.update();
+
   }
 
   /**
@@ -55,8 +55,9 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-    if (User.current()) {
-      Account.list(User.current, (response, err) => {
+    let user = User.current();
+    if (user) {
+      Account.list(user, (response, err) => {
         if (response.success) {
           this.clear();
           response.data.forEach(item => this.renderItem(item));
@@ -82,14 +83,16 @@ class AccountsWidget {
    * счёта класс .active.
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
-  onSelectAccount( element ) {
+  onSelectAccount(element) {
     let accountsPanel = document.querySelector('.accounts-panel');
     if (accountsPanel.querySelector('.active')) {
       accountsPanel.querySelector('.active').classList.remove('active')
-    } 
+    }
     element.closest('li').classList.add('active');
-    
-    App.showPage( 'transactions', { account_id: element.dataset.id })
+
+    App.showPage('transactions', {
+      account_id: element.dataset.id
+    })
   }
 
   /**
@@ -97,15 +100,13 @@ class AccountsWidget {
    * отображения в боковой колонке.
    * item - объект с данными о счёте
    * */
-  getAccountHTML(item){
+  getAccountHTML(item) {
     return `<li class="account" data-id="${item.id}">
     <a href="#">
         <span>${item.name}</span> /
         <span>${item.sum} ₽</span>
     </a>
 </li>`
-
-
   }
 
   /**
@@ -114,7 +115,7 @@ class AccountsWidget {
    * AccountsWidget.getAccountHTML HTML-код элемента
    * и добавляет его внутрь элемента виджета
    * */
-  renderItem(data){
+  renderItem(data) {
     let accountHTML = this.getAccountHTML(data);
     this.element.insertAdjacentHTML('beforeEnd', accountHTML);
 

@@ -9,10 +9,11 @@ class CreateAccountForm extends AsyncForm {
    * и сбрасывает форму
    * */
   onSubmit(data) {
-    Account.create(data, response => {
+    Account.create(data, (response) => {
       if (response.success) {
-        let thisElement = App.getModal('createAccount'); 
+        let thisElement = App.getModal('createAccount');
         thisElement.close();
+        App.update();
         thisElement.element.querySelector('.form').reset();
       } else {
         throw response.error;
